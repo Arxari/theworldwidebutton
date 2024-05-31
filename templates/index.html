@@ -1,0 +1,32 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Counter</title>
+    <script>
+        async function fetchCounter() {
+            const response = await fetch('/counter');
+            const data = await response.json();
+            document.getElementById('counter').innerText = data.count;
+        }
+
+        async function incrementCounter() {
+            const response = await fetch('/counter', {
+                method: 'POST'
+            });
+            const data = await response.json();
+            document.getElementById('counter').innerText = data.count;
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchCounter);
+    </script>
+</head>
+<body>
+    <div class="counter">
+        <h1>Global Counter</h1>
+        <p id="counter">0</p>
+        <button onclick="incrementCounter()">Click Me!</button>
+    </div>
+</body>
+</html>
+
